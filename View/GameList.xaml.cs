@@ -14,6 +14,9 @@ namespace gameLauncher.View
         string PathToGame = "";
         bool running = false;
         Process StartedGame = new Process();
+        StreamWriter sw = new StreamWriter("GameList.txt");
+        StreamReader sr = new StreamReader("GameList.txt");
+
         public GameList()
         {
             InitializeComponent();
@@ -26,12 +29,11 @@ namespace gameLauncher.View
             {
                 GameAdd(dialog);
             }
-
         }
 
         public void GameAdd(OpenFileDialog dialog)
         {
-            GamesData.Add(new Game(dialog));
+            GamesData.Add(new Game(Path.GetFileNameWithoutExtension(dialog.SafeFileName), dialog.FileName));
             gameListView.Items.Add(GamesData.Last().name);
         }
 
@@ -72,10 +74,10 @@ namespace gameLauncher.View
             public string name;
             public string pathToGame;
 
-            public Game(OpenFileDialog dialog)
+            public Game(string name, string pathToGame)
             {
-                name = Path.GetFileNameWithoutExtension(dialog.SafeFileName);
-                pathToGame = dialog.FileName;
+                this.name = name;
+                this.pathToGame = pathToGame;
             }
 
         }
