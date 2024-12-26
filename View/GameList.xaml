@@ -18,12 +18,26 @@
                 <RowDefinition Height=".95*"/>
                 <RowDefinition Height=".05*"/>
             </Grid.RowDefinitions>
-            <ListView Name="gameListView" SelectionChanged="GameList_SelectionChanged" Grid.Column="0" Grid.Row="0"></ListView>
+            <ListView Name="gameListView" SelectionChanged="GameList_SelectionChanged" Grid.Column="0" Grid.Row="0" >
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Rename" Click="MenuItemRename_Click"/>
+                        <MenuItem Header="Remove" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+            <Popup Name="RenamePopup" IsOpen="false">
+                <Border BorderThickness="1">
+                    <TextBox Name="RenamePopupText" Padding="30" Background="LightBlue">
+
+                    </TextBox>
+                </Border>
+            </Popup>
             <Button Grid.Row="1" Content="Add Game" Click="AddGame_Click" ToolTip="Add an .exe"></Button>
         </Grid>
 
         <Grid Grid.Column="1">
-            <TextBlock Name="Name" Text="Game" 
+            <TextBlock Name="GameName" Text="Game" 
                        HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"
                        Margin="15,-100,0,0"
                        ></TextBlock>

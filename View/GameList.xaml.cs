@@ -14,12 +14,11 @@ namespace gameLauncher.View
         string PathToGame = "";
         bool running = false;
         Process StartedGame = new Process();
-        StreamWriter sw = new StreamWriter("GameList.txt");
-        StreamReader sr = new StreamReader("GameList.txt");
 
         public GameList()
         {
             InitializeComponent();
+            LoadData();
         }
 
         private void AddGame_Click(object sender, RoutedEventArgs e)
@@ -29,11 +28,21 @@ namespace gameLauncher.View
             {
                 GameAdd(dialog);
             }
+
+            WriteData();
         }
 
+        // Adds Game to List and XAML ListView
         public void GameAdd(OpenFileDialog dialog)
         {
             GamesData.Add(new Game(Path.GetFileNameWithoutExtension(dialog.SafeFileName), dialog.FileName));
+            gameListView.Items.Add(GamesData.Last().name);
+        }
+        // Same Logic but takes strings as parameters
+        public void GameAdd(string name, string pathToGame)
+        {
+            if (name == null || pathToGame == null) { return; }
+            GamesData.Add(new Game(Path.GetFileNameWithoutExtension(name), pathToGame));
             gameListView.Items.Add(GamesData.Last().name);
         }
 
@@ -41,11 +50,13 @@ namespace gameLauncher.View
         {
             SelectedGame = GamesData[gameListView.SelectedIndex].name;
             PathToGame = GamesData[gameListView.SelectedIndex].pathToGame;
-            Name.Text = SelectedGame;
+            GameName.Text = SelectedGame;
         }
 
+        // Run Game
         private void RunBtn_Click(object sender, RoutedEventArgs e)
         {
+            // If path exists run and return out of function
             if (Path.Exists(PathToGame) && !running)
             {
                 StartedGame = Process.Start(PathToGame);
@@ -57,6 +68,7 @@ namespace gameLauncher.View
                 return;
             }
 
+            // If already running try to kill game, return.
             if (running)
             {
                 if (!StartedGame.HasExited)
@@ -69,6 +81,34 @@ namespace gameLauncher.View
             }
         }
 
+        // Write data to a File
+        void WriteData()
+        {
+            StreamWriter sw = new StreamWriter("StoredData.txt", false);
+            foreach (Game game in GamesData)
+            {
+                if (sw != null)
+                {
+                    sw.WriteLine(game.name);
+                    sw.WriteLine(game.pathToGame);
+                }
+            }
+            sw?.Close();
+        }
+
+        void LoadData()
+        {
+            StreamReader sr = new StreamReader("StoredData.txt");
+            string name, path;
+            while (sr.Peek() >= 0)
+            {
+                name = sr.ReadLine();
+                path = sr.ReadLine();
+                GameAdd(name, path);
+            }
+
+        }
+
         public class Game
         {
             public string name;
@@ -79,7 +119,13 @@ namespace gameLauncher.View
                 this.name = name;
                 this.pathToGame = pathToGame;
             }
+        }
 
+
+        private void MenuItemRename_Click(object sender, RoutedEventArgs e)
+        {
+            RenamePopup.IsOpen = true;
+            
         }
     }
 }
