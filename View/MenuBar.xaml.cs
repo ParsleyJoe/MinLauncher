@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace gameLauncher.View
 {

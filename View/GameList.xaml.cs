@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -125,7 +124,7 @@ namespace gameLauncher.View
         private void MenuItemRename_Click(object sender, RoutedEventArgs e)
         {
             RenamePopup.IsOpen = true;
-            
+
         }
     }
 }
