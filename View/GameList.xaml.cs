@@ -99,13 +99,17 @@ namespace gameLauncher.View
         {
             StreamReader sr = new StreamReader("StoredData.txt");
             string name, path;
+            if (sr == null)
+            {
+                return;
+            }
             while (sr.Peek() >= 0)
             {
                 name = sr.ReadLine();
                 path = sr.ReadLine();
                 GameAdd(name, path);
             }
-
+            sr?.Close();
         }
 
         public class Game
