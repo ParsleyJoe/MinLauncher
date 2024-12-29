@@ -102,6 +102,7 @@ namespace gameLauncher.View
             GamesDataStr[gameListView.SelectedIndex] = RenamePopupText.Text;
             gameListView.UpdateDefaultStyle();
             RenamePopup.IsOpen = false;
+            WriteData();
         }
 
         private void RenameCancelBtn_Click(object sender, RoutedEventArgs e)
@@ -113,6 +114,7 @@ namespace gameLauncher.View
         {
             GamesData.Remove(GamesData[gameListView.SelectedIndex]);
             GamesDataStr.Remove(GamesDataStr[gameListView.SelectedIndex]);
+            WriteData();
         }
         #endregion
 
@@ -150,8 +152,6 @@ namespace gameLauncher.View
         }
         #endregion
 
-
-        
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using gameLauncher.View;
 
 namespace gameLauncher
 {
