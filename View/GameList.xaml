@@ -18,19 +18,23 @@
                 <RowDefinition Height=".95*"/>
                 <RowDefinition Height=".05*"/>
             </Grid.RowDefinitions>
-            <ListView Name="gameListView" SelectionChanged="GameList_SelectionChanged" Grid.Column="0" Grid.Row="0" >
+            <ListView Name="gameListView" ItemsSource="{Binding GamesDataStr}" SelectionChanged="GameList_SelectionChanged" Grid.Column="0" Grid.Row="0" >
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Rename" Click="MenuItemRename_Click"/>
-                        <MenuItem Header="Remove" />
+                        <MenuItem Header="Remove" Click="MenuItemDelete_Click" />
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>
             <Popup Name="RenamePopup" IsOpen="false">
                 <Border BorderThickness="1">
+                    <StackPanel>
                     <TextBox Name="RenamePopupText" Padding="30" Background="LightBlue">
 
                     </TextBox>
+                    <Button Name="RenameOkBtn"  Content="Ok" Click="RenameOkBtn_Click"></Button>
+                    <Button Name="RenameCancelBtn" Click="RenameCancelBtn_Click" Content="Cancel"></Button>
+                    </StackPanel>
                 </Border>
             </Popup>
             <Button Grid.Row="1" Content="Add Game" Click="AddGame_Click" ToolTip="Add an .exe"></Button>
