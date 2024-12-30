@@ -18,6 +18,7 @@
             </Grid.ColumnDefinitions>
             <userControl:GameList Grid.Column="0"></userControl:GameList>
         </Grid>
+        
         <userControl:MenuBar Grid.Row="0"></userControl:MenuBar>
     </Grid>
 </Window>

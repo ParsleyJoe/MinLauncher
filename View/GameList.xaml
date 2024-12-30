@@ -13,6 +13,8 @@
             <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width=".8*"/>
         </Grid.ColumnDefinitions>
+        
+        <!-- List Grid -->
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".95*"/>
@@ -39,13 +41,28 @@
             </Popup>
             <Button Grid.Row="1" Content="Add Game" Click="AddGame_Click" ToolTip="Add an .exe"></Button>
         </Grid>
-
+        
+        <!-- Game Page Grid -->
         <Grid Grid.Column="1">
-            <TextBlock Name="GameName" Text="Game" 
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".4*"/>
+                <RowDefinition Height=".02*"/>
+                <RowDefinition Height=".58*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Name="GameName" Text="Game" 
                        HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"
                        Margin="15,-100,0,0"
                        ></TextBlock>
-            <Button Name="RunBtn" Click="RunBtn_Click" Content="Run" Height="50" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15"></Button>
+            <Button Grid.Row="0" Name="RunBtn" Click="RunBtn_Click" Content="Run" Height="50" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15"></Button>
+            
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="DarkGray" Height="20">
+                
+            </GridSplitter>
+            
+            <userControl:PropertiesPanel Grid.Row="2"></userControl:PropertiesPanel>
         </Grid>
+        
+        
     </Grid>
 </UserControl>

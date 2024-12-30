@@ -12,6 +12,7 @@ namespace gameLauncher.View
     {
         public List<Game> GamesData = new List<Game>();
         public ObservableCollection<string> GamesDataStr = new();
+        string PathToSaveFile = "C:\\Users\\PC\\source\\repos\\gameLauncher\\bin\\Debug\\net8.0-windows\\StoredData.txt";
         string SelectedGame = "";
         string PathToGame = "";
         bool running = false;
@@ -122,7 +123,7 @@ namespace gameLauncher.View
         // Write data to a File
         void WriteData()
         {
-            StreamWriter sw = new StreamWriter("StoredData.txt", false);
+            StreamWriter sw = new StreamWriter(PathToSaveFile, false);
             foreach (Game game in GamesData)
             {
                 if (sw != null)
@@ -136,7 +137,7 @@ namespace gameLauncher.View
 
         void LoadData()
         {
-            StreamReader sr = new StreamReader("StoredData.txt");
+            StreamReader sr = new StreamReader(PathToSaveFile);
             string name, path;
             if (sr == null)
             {
