@@ -1,0 +1,6 @@
+Ultrakill
+D:\Games\ULTRAKILL.v2024.05.13\ULTRAKILL.v2024.05.13\ULTRAKILL.exe
+gzdoom
+D:\Games\gzdoom\gzdoom.exe
+dxball
+D:\Games\Dxball\DXBALL.EXE

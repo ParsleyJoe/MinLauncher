@@ -17,4 +17,10 @@ namespace gameLauncher.Classes
             this.pathToGame = pathToGame;
         }
     }
+
+    public static class Globals
+    {
+        public static List<Game> GamesData = new List<Game>();
+
+    }
 }

@@ -10,9 +10,8 @@ namespace gameLauncher.View
 {
     public partial class GameList : UserControl
     {
-        public List<Game> GamesData = new List<Game>();
         public ObservableCollection<string> GamesDataStr = new();
-        string PathToSaveFile = "C:\\Users\\PC\\source\\repos\\gameLauncher\\bin\\Debug\\net8.0-windows\\StoredData.txt";
+        string PathToSaveFile = Path.GetFullPath("StoredData.txt");
         string SelectedGame = "";
         string PathToGame = "";
         bool running = false;
@@ -28,18 +27,18 @@ namespace gameLauncher.View
         }
 
         #region GameAdd()
-        // Adds Game to List and XAML ListView
+        // Adds Game to GamesDataList and GamesDataStr ObserCollec
         public void GameAdd(OpenFileDialog dialog)
         {
-            GamesData.Add(new Game(Path.GetFileNameWithoutExtension(dialog.SafeFileName), dialog.FileName));
-            GamesDataStr.Add(GamesData.Last().name);
+            Globals.GamesData.Add(new Game(Path.GetFileNameWithoutExtension(dialog.SafeFileName), dialog.FileName));
+            GamesDataStr.Add(Globals.GamesData.Last().name);
         }
         // Same Logic but takes strings as parameters
         public void GameAdd(string name, string pathToGame)
         {
             if (name == null || pathToGame == null) { return; }
-            GamesData.Add(new Game(Path.GetFileNameWithoutExtension(name), pathToGame));
-            GamesDataStr.Add(GamesData.Last().name);
+            Globals.GamesData.Add(new Game(Path.GetFileNameWithoutExtension(name), pathToGame));
+            GamesDataStr.Add(Globals.GamesData.Last().name);
         }
         #endregion
 
@@ -48,8 +47,8 @@ namespace gameLauncher.View
         {
             // gameListView.SelectedIndex == -1 when GamesDataStr changed ,idk why
             if (gameListView.SelectedIndex == -1 ) { return; }
-            SelectedGame = GamesData[gameListView.SelectedIndex].name;
-            PathToGame = GamesData[gameListView.SelectedIndex].pathToGame;
+            SelectedGame = Globals.GamesData[gameListView.SelectedIndex].name;
+            PathToGame = Globals.GamesData[gameListView.SelectedIndex].pathToGame;
             GameName.Text = SelectedGame;
         }
 
@@ -99,7 +98,7 @@ namespace gameLauncher.View
 
         private void RenameOkBtn_Click(object sender, RoutedEventArgs e)
         {
-            GamesData[gameListView.SelectedIndex].name = RenamePopupText.Text;
+            Globals.GamesData[gameListView.SelectedIndex].name = RenamePopupText.Text;
             GamesDataStr[gameListView.SelectedIndex] = RenamePopupText.Text;
             gameListView.UpdateDefaultStyle();
             RenamePopup.IsOpen = false;
@@ -113,7 +112,7 @@ namespace gameLauncher.View
 
         private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
         {
-            GamesData.Remove(GamesData[gameListView.SelectedIndex]);
+            Globals.GamesData.Remove(Globals.GamesData[gameListView.SelectedIndex]);
             GamesDataStr.Remove(GamesDataStr[gameListView.SelectedIndex]);
             WriteData();
         }
@@ -124,7 +123,7 @@ namespace gameLauncher.View
         void WriteData()
         {
             StreamWriter sw = new StreamWriter(PathToSaveFile, false);
-            foreach (Game game in GamesData)
+            foreach (Game game in Globals.GamesData)
             {
                 if (sw != null)
                 {
