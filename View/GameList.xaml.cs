@@ -12,7 +12,6 @@ namespace gameLauncher.View
     {
         public ObservableCollection<string> GamesDataStr = new();
         string PathToSaveFile = Path.GetFullPath("StoredData.txt");
-        string SelectedGame = "";
         string PathToGame = "";
         bool running = false;
         Process StartedGame = new Process();
@@ -47,9 +46,9 @@ namespace gameLauncher.View
         {
             // gameListView.SelectedIndex == -1 when GamesDataStr changed ,idk why
             if (gameListView.SelectedIndex == -1 ) { return; }
-            SelectedGame = Globals.GamesData[gameListView.SelectedIndex].name;
+            Globals.SelectedGame = Globals.GamesData[gameListView.SelectedIndex].name;
             PathToGame = Globals.GamesData[gameListView.SelectedIndex].pathToGame;
-            GameName.Text = SelectedGame;
+            GameName.Text = Globals.SelectedGame;
         }
 
         #region ButtonClicks
@@ -69,6 +68,7 @@ namespace gameLauncher.View
             // If path exists run and return out of function
             if (Path.Exists(PathToGame) && !running)
             {
+                ProcessStartInfo startinfo = new ProcessStartInfo(PathToGame); 
                 StartedGame = Process.Start(PathToGame);
                 if (StartedGame != null)
                 {

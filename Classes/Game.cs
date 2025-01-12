@@ -21,6 +21,7 @@ namespace gameLauncher.Classes
     public static class Globals
     {
         public static List<Game> GamesData = new List<Game>();
+        public static string SelectedGame = "";
 
     }
 }

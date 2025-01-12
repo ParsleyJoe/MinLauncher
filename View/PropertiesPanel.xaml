@@ -19,8 +19,13 @@
         
         <!-- Top Menu -->
         <Menu FontSize="30" Grid.Row="0">
-            <MenuItem Header="Properties"></MenuItem>
+            <MenuItem Header="Properties" Click="PropertiesMenuItem_Click"></MenuItem>
         </Menu>
-        <TextBlock Grid.Row="1" Text="Bruh Moment" FontSize="30"/>
+        <ListView Grid.Row="1">
+            
+        <TextBlock Name="GameName" Grid.Row="1" Text="Click Properties" FontSize="30"/>
+
+        <TextBlock Name="GamePath" Grid.Row="1" Text="Or drag this down" FontSize="30"/>
+        </ListView>
     </Grid>
 </UserControl>
