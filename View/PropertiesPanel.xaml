@@ -25,7 +25,7 @@
             
         <TextBlock Name="GameName" Grid.Row="1" Text="Click Properties" FontSize="30"/>
 
-        <TextBlock Name="GamePath" Grid.Row="1" Text="Or drag this down" FontSize="30"/>
+        <TextBlock Name="GamePath" Grid.Row="1" Text="Or drag this panel down" FontSize="30"/>
         </ListView>
     </Grid>
 </UserControl>

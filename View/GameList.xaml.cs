@@ -14,7 +14,7 @@ namespace gameLauncher.View
         string PathToSaveFile = Path.GetFullPath("StoredData.txt");
         string PathToGame = "";
         bool running = false;
-        Process StartedGame = new Process();
+        Process? StartedGame = new();
 
         // Constructor 
         public GameList()
@@ -68,8 +68,10 @@ namespace gameLauncher.View
             // If path exists run and return out of function
             if (Path.Exists(PathToGame) && !running)
             {
-                ProcessStartInfo startinfo = new ProcessStartInfo(PathToGame); 
-                StartedGame = Process.Start(PathToGame);
+                ProcessStartInfo startinfo = new ProcessStartInfo(Path.GetFileName(PathToGame));
+                startinfo.UseShellExecute = true;
+                startinfo.WorkingDirectory = Path.GetDirectoryName(PathToGame);
+                StartedGame = Process.Start(startinfo);
                 if (StartedGame != null)
                 {
                     RunBtn.Content = "Running..";
@@ -154,4 +156,3 @@ namespace gameLauncher.View
 
     }
 }
-
