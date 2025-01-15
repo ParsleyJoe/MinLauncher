@@ -15,13 +15,13 @@
         </Grid.ColumnDefinitions>
         
         <!-- List Grid -->
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Background="#181735">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".95*"/>
                 <RowDefinition Height=".05*"/>
             </Grid.RowDefinitions>
             <ListView Name="gameListView" ItemsSource="{Binding GamesDataStr}" SelectionChanged="GameList_SelectionChanged" 
-                      Grid.Column="0" Grid.Row="0">
+                      Grid.Column="0" Grid.Row="0" Background="#1a1a23" Foreground="#ececf9">
                 <ListView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Rename" Click="MenuItemRename_Click"/>
@@ -35,16 +35,37 @@
                     <TextBox Name="RenamePopupText" Padding="30" Background="LightBlue">
 
                     </TextBox>
-                    <Button Name="RenameOkBtn"  Content="Ok" Click="RenameOkBtn_Click"></Button>
+                    <Button Name="RenameOkBtn" Content="Ok" Click="RenameOkBtn_Click"></Button>
                     <Button Name="RenameCancelBtn" Click="RenameCancelBtn_Click" Content="Cancel"></Button>
                     </StackPanel>
                 </Border>
             </Popup>
-            <Button Grid.Row="1" Content="Add Game" Click="AddGame_Click" ToolTip="Add an .exe"></Button>
+            <Button Grid.Row="1" Content="Add Game" Click="AddGame_Click" ToolTip="Add an .exe" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FE6584"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseDirectlyOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="160" CornerRadius="1" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </Grid>
         
         <!-- Game Page Grid -->
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Background="#1a1a23">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".4*"/>
                 <RowDefinition Height=".02*"/>
@@ -53,9 +74,31 @@
             
             <TextBlock Grid.Row="0" Name="GameName" Text="Game" 
                        HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="40"
-                       Margin="15,-100,0,0"
+                       Margin="15,-100,0,0" Foreground="White"
                        ></TextBlock>
-            <Button Grid.Row="0" Name="RunBtn" Click="RunBtn_Click" Content="Run" Height="50" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15"></Button>
+            <Button Grid.Row="0" Name="RunBtn" Click="RunBtn_Click" Content="Run" Height="50" Width="100" 
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#FFFE6584"></Setter>
+                        <Setter Property="Foreground" Value="White"></Setter>
+                        <Setter Property="Cursor" Value="Hand"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseDirectlyOver" Value="True">
+                                <Setter Property="Background" Value="#281528"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="100" CornerRadius="1" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
             
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Background="DarkGray" Height="20">
                 

@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:gameLauncher.View"
              mc:Ignorable="d" 
              Height="20" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="#0F0F2D">
         <Grid.ColumnDefinitions >
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Menu >
+        <Menu Background="#0F0F2D" Foreground="White" FontWeight="Medium">
             <MenuItem Header="File">
             </MenuItem>
             <MenuItem Header="Bruh"/>
